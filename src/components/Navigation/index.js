@@ -1,5 +1,7 @@
 import React, {useState } from "react";
 import {Link} from "react-router-dom"
+import "../../assets/css/base.css";
+
 
 
 const NAVLINKS = [
@@ -48,12 +50,16 @@ export default function() {
   }
 
   return (
-    <div className="d-flex backgroundcolor class">
-      <div className="">
-        <span className="brand">SimplexDecor</span>
+    <header className="py-7 lg:py-9 bg-white">
+      <div className='main-wrapper'>
+        <nav className='flex justify-between  items-center cursor-pointer'>
+      <div>
+        <span className="uppercase font-bold hover:text-black">SimplexDecor</span>
       </div>
 
-      <ul className="flex-row-item">
+
+  <div>
+      <ul className="flex gap-11 text-sm">
         {NAVLINKS.map((navitem, index) => {
           return (
             <Link to={navitem.link} key={index} className="navitem">
@@ -62,7 +68,10 @@ export default function() {
           );
         })}
       </ul>
-      <ul className="sideoptions ">
+      </div>
+
+     <div>
+      <ul className="sideoptions flex gap-4 text-sm">
         <div className="flex-box" onClick={(e) => handleCart()}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +109,13 @@ export default function() {
           </svg>
         </div>
       </ul>
-    </div>
+      </div>
+  
+      
+</nav>
+      </div>
+    </header>
   );
 };
+
+

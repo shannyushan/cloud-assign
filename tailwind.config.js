@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src//*.{html,js}"],
+    content: ["./src//*.{html,js}",
+    './src/components/**/*.{html,js}',
+    
+  
+   ],
+ 
     theme: {
       extend: {
 
@@ -10,10 +15,10 @@ module.exports = {
          colors: {
         primary: { //ultramarine
           DEFAULT: '#083f89',
-          'w-50': '#f8f6f7',
-          'o-100': '#ff9d01',
-          'b-200' : '#0f0506'
-
+          '50': '#f8f6f7',
+          '100': '#ff9d01',
+          '200' : '#0f0506'
+         
         },
       },
       },

@@ -1,8 +1,10 @@
 import React from 'react'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
-
+import Navigation from './components/Navigation'
 
 import Home from "./pages/Home"
+
+
 
 
 const App = () => {
@@ -10,6 +12,8 @@ const App = () => {
   <BrowserRouter>
   <Routes>
     <Route path='/' element={<Home/>}/>
+      <Route path='/Navigation' element={<Navigation />} />
+    
   </Routes>
   
   
@@ -21,14 +25,14 @@ const App = () => {
 
 
 
-const ProtectedRoute = () =>{
+// const ProtectedRoute = () =>{
 
-}
+// }
 
 
-const AdminRoute = () =>{
+// const AdminRoute = () =>{
 
-}
+// }
 
 
 export default App
