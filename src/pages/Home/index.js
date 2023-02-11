@@ -1,9 +1,13 @@
- import React from 'react'
- 
- const Home = () => {
-   return (
-     <div>Home</div>
-   )
- }
- 
- export default Home
+import React from "react";
+import Navigation from "../../components/Navigation";
+
+const Home = () => {
+  return (
+    <>
+      <Navigation />
+      <div>Home</div>
+    </>
+  );
+};
+
+export default Home;
