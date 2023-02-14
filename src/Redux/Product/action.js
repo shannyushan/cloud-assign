@@ -51,3 +51,20 @@ export const fetchGetProductsById = (id) => (dispatch) => {
       console.log("err", e);
     });
 };
+
+export const fetchGetRecentlyAdded = () => (dispatch) => {
+  dispatch(productLoading());
+  return axios
+    .get(`${BaseUrl}/product/get/recentlyAdded`)
+    .then(({ data }) => {
+      if (data.success) {
+        dispatch({
+          type: ActionTypes.GET_RECENTLY_ADDED_PRODUCT,
+          payload: data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log("err", e);
+    });
+};

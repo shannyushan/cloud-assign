@@ -9,53 +9,25 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import {
+  fetchGetProducts,
+  fetchGetRecentlyAdded,
+} from "../../Redux/Product/action";
 
-const recently = [
-  {
-    id: 1,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 1",
-    price: "1000",
-  },
-  {
-    id: 2,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 2",
-    price: "1000",
-  },
-  {
-    id: 3,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 3",
-    price: "1000",
-  },
-  {
-    id: 4,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 4",
-    price: "1000",
-  },
-  {
-    id: 5,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 5",
-    price: "1000",
-  },
-  {
-    id: 6,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 6",
-    price: "1000",
-  },
-  {
-    id: 7,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cake 7",
-    price: "1000",
-  },
-];
+const Home = () => {
+  const products = useSelector((state) => state.product.products, shallowEqual);
+  const recently = useSelector(
+    (state) => state.product.recentlyAdded,
+    shallowEqual
+  );
+  const dispatch = useDispatch();
 
-const Home = ({ ref }) => {
+  useEffect(() => {
+    dispatch(fetchGetProducts());
+    dispatch(fetchGetRecentlyAdded());
+  }, []);
+
   const sliderRef = useRef(null);
 
   const SamplePrevArrow = (props) => {
@@ -154,7 +126,7 @@ const Home = ({ ref }) => {
   return (
     <div className="bg-gray-100 px-5 py-24 w-full min-h-screen">
       <Banner />
-      <CakeList ref={ref} />
+      <CakeList />
 
       {/* newly added Products */}
       <div className="mx-2 mb-5 mt-8 ">
@@ -172,7 +144,7 @@ const Home = ({ ref }) => {
       <div className="mx-2 mb-5 mt-8 ">
         <h1 className="pb-3 px-1 text-xl">Featured Cakes</h1>
         <Slider {...settings} ref={sliderRef}>
-          {recently.map((product) => (
+          {products.map((product) => (
             <div className="px-1">
               <Card const product={product} />
             </div>

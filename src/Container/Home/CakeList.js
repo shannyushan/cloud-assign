@@ -1,43 +1,16 @@
-import React from "react";
-
-const category = [
-  {
-    id: 1,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Black Forest Cake",
-  },
-
-  {
-    id: 2,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Red Velvet Cake",
-  },
-
-  {
-    id: 3,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Eggless Cake",
-  },
-
-  {
-    id: 4,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Strawberry Cake",
-  },
-
-  {
-    id: 5,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Fruit Cake",
-  },
-  {
-    id: 5,
-    img: "https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg",
-    name: "Cheese Cake",
-  },
-];
+import React, { useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { fetchGetCategories } from "../../Redux/Category/action";
 
 const CakeList = () => {
+  const category = useSelector(
+    (state) => state.category.category,
+    shallowEqual
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchGetCategories());
+  }, []);
   return (
     <div class="mt-12 bg-clip-content p-6 border-4 border-red-200 rounded-xl border-dashed mx-2">
       <h1
@@ -53,7 +26,7 @@ const CakeList = () => {
               {/* img div */}
               <div className="flex justify-center h-36 md:h-48">
                 <img
-                  src={cat.img}
+                  src={`http://localhost:8000/${cat.image}`}
                   alt={cat.name}
                   className="h-full object-contain w-full"
                 />

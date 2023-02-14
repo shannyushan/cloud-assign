@@ -7,6 +7,7 @@ const initialState = {
   totalData: "",
   products: [],
   product: "",
+  recentlyAdded: [],
   errMsg: "",
 };
 
@@ -35,6 +36,14 @@ export const Product = (state = initialState, action) => {
         isloading: false,
         success: action.payload.success,
         product: action.payload.data,
+      };
+
+    case ActionTypes.GET_RECENTLY_ADDED_PRODUCT:
+      return {
+        ...state,
+        isloading: false,
+        success: action.payload.success,
+        recentlyAdded: action.payload.data,
       };
 
     default:
