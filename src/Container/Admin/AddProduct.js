@@ -1,18 +1,43 @@
 import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import FormikControl from "../../Component/Formik/FormikControl";
 import Message from "../../Component/Message/Message";
 import Image from "../../Component/UploadImage/Image";
-import { fetchAddCategory } from "../../Redux/Category/action";
+import { fetchAddProduct } from "../../Redux/Product/action";
+import { IoIosArrowForward } from "react-icons/io";
+import Select from "../../Component/SelectField/Select";
+import { fetchGetCategories } from "../../Redux/Category/action";
 
-const AddCategory = () => {
+const AddProduct = () => {
+  const [categoryId, setCategoryId] = useState("");
+  const [getDropdown, setGetDropdown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Select a Category");
   const [message, setMessage] = useState("");
 
+  const handleToggle = () => {
+    setGetDropdown(!getDropdown);
+  };
+
+  const handleChangeSelected = (category, id) => {
+    setSelectedCategory(category);
+    setGetDropdown(false);
+    setCategoryId(id);
+  };
+
   const dispatch = useDispatch();
-  const msg = useSelector((state) => state.category.message, shallowEqual);
+  const msg = useSelector((state) => state.product.message, shallowEqual);
+  const category = useSelector(
+    (state) => state.category.category,
+    shallowEqual
+  );
+
+  useEffect(() => {
+    dispatch(fetchGetCategories());
+  }, []);
+
+  console.log("Caaaaaa", category);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,13 +47,18 @@ const AddCategory = () => {
   const initialValues = {
     image: "",
     name: "",
+    price: "",
+    description: "",
   };
 
   const onSubmit = (values, onSubmitProps) => {
     const formData = new FormData();
     formData.append("image", values.image);
     formData.append("name", values.name);
-    dispatch(fetchAddCategory(formData));
+    formData.append("category", categoryId);
+    formData.append("price", values.price);
+    formData.append("description", values.description);
+    dispatch(fetchAddProduct(formData));
     setTimeout(() => {
       onSubmitProps.resetForm({ values: "" });
       onSubmitProps.setSubmitting(false);
@@ -52,14 +82,13 @@ const AddCategory = () => {
           <h1 className="text-blue-500 cursor-pointer">Dashboard</h1>
         </Link>
         <IoIosArrowForward className="m-1 text-gray-500" />
-        <Link to="/admin-dashboard/manage-category">
-          <p className="text-blue-500 cursor-pointer">Category</p>
+        <Link to="/admin-dashboard/manage-product">
+          <p className="text-blue-500 cursor-pointer">Product</p>
         </Link>
         <IoIosArrowForward className="m-1 text-gray-500" />
-        <p className=" text-gray-500">Add Category</p>
+        <p className=" text-gray-500">Add Product</p>
       </div>
-      <h1 className="text-xl underline">Add Category</h1>
-
+      <h1 className="text-xl underline">Add Product</h1>
       <div className="w-2/3 mx-auto border border-gray-300 rounded-md h-fit mt-8">
         <Formik
           initialValues={initialValues}
@@ -86,6 +115,38 @@ const AddCategory = () => {
                     name="name"
                   />
                 </div>
+
+                <div className="w-full">
+                  <Select
+                    list={category}
+                    label="Category"
+                    getDropdownData={handleToggle}
+                    onClickDropdownOption={handleChangeSelected}
+                    selectedList={selectedCategory}
+                    showDropDown={getDropdown}
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-x-5 w-full mt-8 px-7">
+                <div className="w-full">
+                  <FormikControl
+                    label="Price"
+                    placeholder="Price"
+                    control="input"
+                    name="price"
+                    type="number"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <FormikControl
+                    label="Description"
+                    placeholder="Description"
+                    control="input"
+                    name="description"
+                  />
+                </div>
               </div>
 
               <div className="px-7 pb-4">
@@ -104,4 +165,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default AddProduct;

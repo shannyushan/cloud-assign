@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCategory from "./Container/Admin/AddCategory";
+import AddProduct from "./Container/Admin/AddProduct";
 import Dashboard from "./Container/Admin/Dashboard";
 import ViewCategory from "./Container/Admin/ViewCategory";
+import ViewProduct from "./Container/Admin/ViewProduct";
 import Home from "./Container/Home/Home";
 import Login from "./Container/Login";
 import Products from "./Container/Product";
@@ -21,6 +23,8 @@ const App = () => {
         >
           <Route path="manage-category" element={<ViewCategory />} />
           <Route path="add-category" element={<AddCategory />} />
+          <Route path="manage-product" element={<ViewProduct />} />
+          <Route path="add-product" element={<AddProduct />} />
         </Route>
 
         {/* user route */}

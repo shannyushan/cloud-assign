@@ -38,7 +38,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <Link to="/admin-dashboard/manage-products">
+        <Link to="/admin-dashboard/manage-product">
           <div className="hover:bg-gray-200 px-5 mt-5 py-1 flex items-center justify-between cursor-pointer">
             <div className="flex items-center gap-x-8">
               <BsFillCartPlusFill className="text-gray-600" size={22} />
