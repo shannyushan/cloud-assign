@@ -3,6 +3,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormikControl from "../Formik/FormikControl";
 
+const NavLink = [
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "About", link: "/about" },
+  { id: 3, name: "Explore", link: "/products" },
+  { id: 4, name: "Category", link: "/category" },
+  { id: 5, name: "Login", link: "/login" },
+];
+
 const Nav = () => {
   const [headerShadow, setHeaderShadow] = useState(false);
 
@@ -37,7 +45,9 @@ const Nav = () => {
     >
       <div className="mx-10 grid grid-cols-12 place-items-center py-4 gap-x-7">
         <div className="px-3 col-span-2">
-          <h1>Cake Hub</h1>
+          <Link to="/">
+            <h1>Cake Hub</h1>
+          </Link>
         </div>
         <div className="col-span-4 w-full">
           <Formik
@@ -60,22 +70,19 @@ const Nav = () => {
         </div>
         <div className="col-start-7 col-end-13 w-full">
           <div className="flex items-center gap-x-8 justify-end">
-            <Link className="hover:text-blue-500">
-              <h1>Home</h1>
-            </Link>
-
-            <Link className="hover:text-blue-500">
-              <h1>About</h1>
-            </Link>
-            <Link className="hover:text-blue-500">
-              <h1>Products</h1>
-            </Link>
-            <Link className="hover:text-blue-500">
-              <h1>Category</h1>
-            </Link>
-            <Link className="hover:text-blue-500">
-              <h1>Login</h1>
-            </Link>
+            {NavLink.map((nav) => {
+              return (
+                <>
+                  <Link
+                    className="hover:text-red-300"
+                    key={nav.id}
+                    to={nav.link}
+                  >
+                    <h1>{nav.name}</h1>
+                  </Link>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

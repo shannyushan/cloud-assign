@@ -5,9 +5,11 @@ import Nav from "../Component/Header/Nav";
 const NormalRoute = ({ Component }) => {
   const { pathname } = useLocation();
   const pathroad = matchPath("/", pathname);
+
   return (
     <div>
       <Nav />
+
       {pathroad ? <Component /> : <Outlet />}
     </div>
   );
