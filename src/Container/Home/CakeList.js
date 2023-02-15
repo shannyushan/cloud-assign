@@ -28,7 +28,7 @@ const CakeList = () => {
                 {/* img div */}
                 <div className="flex justify-center h-36 md:h-48">
                   <img
-                    src={`http://100.26.209.182:8000/${cat.image}`}
+                    src={`http://44.204.103.253:8000/${cat.image}`}
                     alt={cat.name}
                     className="h-full object-contain w-full"
                   />

@@ -10,7 +10,7 @@ const Card = ({ product }) => {
       <Link to={`/product?id=${product._id}`}>
         <div className="flex justify-center h-36 md:h-52 img">
           <img
-            src={`http://100.26.209.182:8000/${product.image}`}
+            src={`http://44.204.103.253:8000/${product.image}`}
             alt={product.name}
             className="h-full object-cover w-full"
           />
