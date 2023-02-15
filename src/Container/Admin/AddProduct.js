@@ -109,8 +109,8 @@ const AddProduct = () => {
               <div className="flex gap-x-5 w-full mt-8 px-7">
                 <div className="w-full">
                   <FormikControl
-                    label="Category Name"
-                    placeholder="Category Name"
+                    label="Product Name"
+                    placeholder="Product Name"
                     control="input"
                     name="name"
                   />

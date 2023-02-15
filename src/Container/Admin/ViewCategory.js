@@ -75,7 +75,7 @@ const ViewCategory = () => {
                         <div className="flex items-center gap-x-2">
                           <div className="w-14 h-14">
                             <img
-                              src={`100.26.209.182:8000/${data.image}`}
+                              src={`http://100.26.209.182:8000/${data.image}`}
                               alt={data.name}
                               className="w-full h-full object-contain"
                             />

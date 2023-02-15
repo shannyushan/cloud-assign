@@ -5,7 +5,6 @@ import { useLocation, matchPath } from "react-router-dom";
 import Loading from "../Component/Loading/Loading";
 import Header from "../Container/Admin/Header";
 import Navbar from "../Container/Admin/Navbar";
-import { fetchUser } from "../Redux/Login/action";
 
 const AdminRoutes = ({ Component }) => {
   const { pathname } = useLocation();
@@ -17,9 +16,9 @@ const AdminRoutes = ({ Component }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchUser());
+  // }, []);
 
   useEffect(() => {
     !isAuthenticated && navigate("/login");
