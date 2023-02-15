@@ -23,34 +23,38 @@ const ProductDetail = () => {
       <div className="flex items-center justify-end">
         <h1>Home</h1>
         <MdOutlineKeyboardArrowRight />
-        <h1>{product.name}</h1>
+        <h1>{product?.name}</h1>
       </div>
       <div className="w-2/3 mx-auto mt-10 flex gap-x-20 py-4">
-        <div className="w-9/12 h-full">
-          <img src={`http://localhost:8000/${product.image}`} alt="img" />
+        <div className="w-9/12 h-80">
+          <img
+            src={`http://100.26.209.182:8000/${product?.image}`}
+            alt="img"
+            className="object-contain w-full h-full"
+          />
         </div>
         <div className="w-full">
           <h1
             className="text-2xl text-green-500"
             style={{ fontFamily: "cursive" }}
           >
-            {product.name}
+            {product?.name}
           </h1>
           <h1
             className="text-center text-red-500 text-xl"
             style={{ fontFamily: "cursive" }}
           >
-            {product.price}
+            {product?.price}
           </h1>
 
           <div className="flex gap-x-8 mt-6">
             <h1>Description:</h1>
-            <p className="text-justify">{product.description}</p>
+            <p className="text-justify">{product?.description}</p>
           </div>
 
           <div className="flex gap-x-20 mt-6">
             <h1>Type:</h1>
-            <p className="text-justify">{product.category.name}</p>
+            <p className="text-justify">{product?.category?.name}</p>
           </div>
 
           <div className="flex gap-x-5 items-center mt-6">
