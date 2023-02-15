@@ -25,7 +25,7 @@ export const fetchGetCartByUser = (id) => (dispatch) => {
     .then(({ data }) => {
       if (data.success) {
         dispatch({
-          type: ActionTypes.ADD_CART,
+          type: ActionTypes.GET_CART_BY_USER,
           payload: data,
         });
       }

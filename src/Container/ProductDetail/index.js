@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { fetchAddCart } from "../../Redux/Cart/action";
 import { fetchGetProductsById } from "../../Redux/Product/action";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState();
   const dispatch = useDispatch();
+  const userId = localStorage.getItem("userId");
   let params = new URLSearchParams(document.location.search);
   let prodId = params.get("id");
   const product = useSelector((state) => state.product.product, shallowEqual);
@@ -17,6 +19,16 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(fetchGetProductsById(prodId));
   }, []);
+
+  const addToCart = () => {
+    const body = {
+      userId: userId,
+      productId: prodId,
+      message: message,
+      quantity: quantity,
+    };
+    dispatch(fetchAddCart(body));
+  };
 
   return (
     <div className="bg-gray-100 px-5 py-24 w-full min-h-screen">
@@ -80,7 +92,7 @@ const ProductDetail = () => {
             />
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex justify-center" onClick={addToCart}>
             <button className="border py-2 px-5 rounded-md bg-red-500 text-white text-center hover:bg-red-400">
               Add to Cart
             </button>

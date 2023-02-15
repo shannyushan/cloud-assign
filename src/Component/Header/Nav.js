@@ -13,6 +13,7 @@ const Nav = () => {
   const isAuthenticated = localStorage.getItem("role");
   const userId = localStorage.getItem("userId");
   const cartData = useSelector((state) => state.cart.cartData, shallowEqual);
+  console.log("ssss", cartData);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
