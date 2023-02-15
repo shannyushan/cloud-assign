@@ -16,7 +16,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(fetchGetProductsById(prodId));
-  }, [prodId]);
+  }, []);
 
   return (
     <div className="bg-gray-100 px-5 py-24 w-full min-h-screen">
