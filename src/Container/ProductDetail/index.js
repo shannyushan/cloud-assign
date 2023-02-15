@@ -1,54 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { fetchGetProductsById } from "../../Redux/Product/action";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState();
-
+  const dispatch = useDispatch();
+  let params = new URLSearchParams(document.location.search);
+  let prodId = params.get("id");
+  const product = useSelector((state) => state.product.product, shallowEqual);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchGetProductsById(prodId));
+  }, [prodId]);
+
   return (
     <div className="bg-gray-100 px-5 py-24 w-full min-h-screen">
       <div className="flex items-center justify-end">
         <h1>Home</h1>
         <MdOutlineKeyboardArrowRight />
-        <h1>Name</h1>
+        <h1>{product.name}</h1>
       </div>
       <div className="w-2/3 mx-auto mt-10 flex gap-x-20 py-4">
         <div className="w-9/12 h-full">
-          <img
-            src="https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg"
-            alt="img"
-          />
+          <img src={`http://localhost:8000/${product.image}`} alt="img" />
         </div>
         <div className="w-full">
           <h1
             className="text-2xl text-green-500"
             style={{ fontFamily: "cursive" }}
           >
-            PineApple Cake
+            {product.name}
           </h1>
           <h1
             className="text-center text-red-500 text-xl"
             style={{ fontFamily: "cursive" }}
           >
-            Rs. 1000
+            {product.price}
           </h1>
 
           <div className="flex gap-x-8 mt-6">
             <h1>Description:</h1>
-            <p className="text-justify">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book
-            </p>
+            <p className="text-justify">{product.description}</p>
           </div>
 
           <div className="flex gap-x-20 mt-6">
             <h1>Type:</h1>
-            <p className="text-justify">Red Velvet Cake</p>
+            <p className="text-justify">{product.category.name}</p>
           </div>
 
           <div className="flex gap-x-5 items-center mt-6">

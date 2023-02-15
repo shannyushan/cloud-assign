@@ -3,14 +3,6 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { fetchGetCategories } from "../../Redux/Category/action";
 
 const Filter = () => {
-  const category = useSelector(
-    (state) => state.category.category,
-    shallowEqual
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchGetCategories());
-  }, []);
   return (
     <div className="fixed w-2/12 bg-white border-r overflow-y-hidden hover:overflow-y-auto h-screen">
       <h1
@@ -20,25 +12,6 @@ const Filter = () => {
         Filter
       </h1>
       <hr className="border-dotted mt-1 border-red-500" />
-
-      {/* search by category */}
-      <div className="mt-4 px-5">
-        <h1>Search By Category</h1>
-        <div className="mt-4">
-          {category.map((cat) => {
-            return (
-              <div className="flex items-center py-1">
-                <input
-                  type="checkbox"
-                  name={cat.id}
-                  className="border border-gray-300 w-10 text-center uppercase py-1.5 rounded-md outline-gray-300"
-                />
-                <label>{cat.name}</label>
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
       <div className="px-5 mt-4 ">
         <h1 className="font-medium text-sm md:text-base">Price</h1>

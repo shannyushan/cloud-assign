@@ -68,3 +68,21 @@ export const fetchGetRecentlyAdded = () => (dispatch) => {
       console.log("err", e);
     });
 };
+
+export const fetchGetProductByCategory = (catId) => (dispatch) => {
+  console.log(catId);
+  dispatch(productLoading());
+  return axios
+    .get(`${BaseUrl}/product/category/${catId}`)
+    .then(({ data }) => {
+      if (data.success) {
+        dispatch({
+          type: ActionTypes.GET_PRODUCT_BY_CATEGRY,
+          payload: data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log("err", e);
+    });
+};

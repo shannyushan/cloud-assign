@@ -1,18 +1,21 @@
 import { Form, Formik } from "formik";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { userLogout } from "../../Redux/Login/action";
 import FormikControl from "../Formik/FormikControl";
-
-const NavLink = [
-  { id: 1, name: "Home", link: "/" },
-  { id: 2, name: "About", link: "/about" },
-  { id: 3, name: "Explore", link: "/products" },
-  { id: 4, name: "Category", link: "/category" },
-  { id: 5, name: "Login", link: "/login" },
-];
+import { FaCartArrowDown } from "react-icons/fa";
+import { fetchGetCartByUser } from "../../Redux/Cart/action";
 
 const Nav = () => {
   const [headerShadow, setHeaderShadow] = useState(false);
+
+  const isAuthenticated = localStorage.getItem("role");
+  const userId = localStorage.getItem("userId");
+  const cartData = useSelector((state) => state.cart.cartData, shallowEqual);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const applyShadow = () => {
     if (window.scrollY >= 30) {
@@ -36,6 +39,17 @@ const Nav = () => {
       onSubmitProps.setSubmitting(false);
     }, 1000);
   };
+
+  const logouts = () => {
+    dispatch(userLogout());
+    localStorage.removeItem("role");
+    localStorage.removeItem("userId");
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    dispatch(fetchGetCartByUser(userId));
+  }, [userId]);
 
   return (
     <header
@@ -69,20 +83,34 @@ const Nav = () => {
           </Formik>
         </div>
         <div className="col-start-7 col-end-13 w-full">
-          <div className="flex items-center gap-x-8 justify-end">
-            {NavLink.map((nav) => {
-              return (
-                <>
-                  <Link
-                    className="hover:text-red-300"
-                    key={nav.id}
-                    to={nav.link}
-                  >
-                    <h1>{nav.name}</h1>
-                  </Link>
-                </>
-              );
-            })}
+          <div className="flex justify-end gap-x-8 items-center">
+            <Link to="/" className="hover:text-red-300">
+              Home
+            </Link>
+
+            <Link className="hover:text-red-300">Category</Link>
+            {isAuthenticated ? (
+              <h1
+                className="hover:text-red-300 cursor-pointer"
+                onClick={logouts}
+              >
+                Logout
+              </h1>
+            ) : (
+              <Link to="/login" className="hover:text-red-300">
+                Login
+              </Link>
+            )}
+
+            {isAuthenticated && (
+              <>
+                <FaCartArrowDown
+                  className="text-red-300 cursor-pointer"
+                  size={25}
+                />
+                <span>{cartData.length}</span>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import { Login } from "./Login/reducer";
 import { Category } from "./Category/reducer";
 import { Product } from "./Product/reducer";
+import { Cart } from "./Cart/reducers";
 
 export const ConfigureStore = () => {
   const store = createStore(
@@ -12,6 +13,7 @@ export const ConfigureStore = () => {
       login: Login,
       category: Category,
       product: Product,
+      cart: Cart,
     }),
     process.env.NODE_ENV === "development"
       ? compose(composeWithDevTools(applyMiddleware(...[thunk, logger])))

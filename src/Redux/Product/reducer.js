@@ -9,6 +9,8 @@ const initialState = {
   product: "",
   recentlyAdded: [],
   errMsg: "",
+  catProduct: [],
+  prodCat: [],
 };
 
 export const Product = (state = initialState, action) => {
@@ -44,6 +46,15 @@ export const Product = (state = initialState, action) => {
         isloading: false,
         success: action.payload.success,
         recentlyAdded: action.payload.data,
+      };
+
+    case ActionTypes.GET_PRODUCT_BY_CATEGRY:
+      return {
+        ...state,
+        isloading: false,
+        success: action.payload.success,
+        catProduct: action.payload.data,
+        prodCat: action.payload.category,
       };
 
     default:

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchGetCategories } from "../../Redux/Category/action";
 
 const CakeList = () => {
@@ -22,26 +23,28 @@ const CakeList = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 mb-5 mt-8">
         {category.map((cat) => {
           return (
-            <div className="bg-slate-100 p-3 py-6 w-full cursor-pointer hover:shadow-md rounded-md shadow-sm border border-slate-300">
-              {/* img div */}
-              <div className="flex justify-center h-36 md:h-48">
-                <img
-                  src={`http://localhost:8000/${cat.image}`}
-                  alt={cat.name}
-                  className="h-full object-contain w-full"
-                />
-              </div>
+            <Link key={cat._id} to={`/category?id=${cat._id}`}>
+              <div className="bg-slate-100 p-3 py-6 w-full cursor-pointer hover:shadow-md rounded-md shadow-sm border border-slate-300">
+                {/* img div */}
+                <div className="flex justify-center h-36 md:h-48">
+                  <img
+                    src={`http://localhost:8000/${cat.image}`}
+                    alt={cat.name}
+                    className="h-full object-contain w-full"
+                  />
+                </div>
 
-              {/* content div */}
-              <div className=" mt-4 p-1">
-                <h1
-                  className="text-sm md:text-base text-center overflow-hidden"
-                  style={{ fontFamily: "cursive" }}
-                >
-                  {cat.name}
-                </h1>
+                {/* content div */}
+                <div className=" mt-4 p-1">
+                  <h1
+                    className="text-sm md:text-base text-center overflow-hidden"
+                    style={{ fontFamily: "cursive" }}
+                  >
+                    {cat.name}
+                  </h1>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
