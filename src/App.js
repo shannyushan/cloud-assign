@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddToCart from "./Component/AddToCart";
 import AddCategory from "./Container/Admin/AddCategory";
 import AddProduct from "./Container/Admin/AddProduct";
 import Dashboard from "./Container/Admin/Dashboard";
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="category" element={<Products />} />
           <Route path="product" element={<ProductDetail />} />
           <Route path="register" element={<Registartion />} />
+          <Route path="cart" element={<AddToCart />} />
         </Route>
       </Routes>
     </BrowserRouter>

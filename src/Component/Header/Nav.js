@@ -6,6 +6,7 @@ import { userLogout } from "../../Redux/Login/action";
 import FormikControl from "../Formik/FormikControl";
 import { FaCartArrowDown } from "react-icons/fa";
 import { fetchGetCartByUser } from "../../Redux/Cart/action";
+import AddToCart from "../AddToCart";
 
 const Nav = () => {
   const [headerShadow, setHeaderShadow] = useState(false);
@@ -105,11 +106,15 @@ const Nav = () => {
 
             {isAuthenticated && (
               <>
-                <FaCartArrowDown
-                  className="text-red-300 cursor-pointer"
-                  size={25}
-                />
-                <span>{cartData.length}</span>
+                <Link to="/cart" className="flex items-center gap-x-3">
+                  <FaCartArrowDown
+                    className="text-red-300 cursor-pointer"
+                    size={25}
+                  />
+                  <span className="rounded-full px-2 bg-red-100 text-white">
+                    {cartData.length}
+                  </span>
+                </Link>
               </>
             )}
           </div>
