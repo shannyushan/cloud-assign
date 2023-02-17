@@ -3,6 +3,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { fetchAddCart } from "../../Redux/Cart/action";
 import { fetchGetProductsById } from "../../Redux/Product/action";
+import { BaseUrl } from "../../Shared/BaseUrl";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
@@ -40,7 +41,7 @@ const ProductDetail = () => {
       <div className="w-2/3 mx-auto mt-10 flex gap-x-20 py-4">
         <div className="w-9/12 h-80">
           <img
-            src={`http://44.204.103.253:8000/${product?.image}`}
+            src={`${BaseUrl}/${product?.image}`}
             alt="img"
             className="object-contain w-full h-full"
           />

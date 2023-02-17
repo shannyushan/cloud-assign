@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchGetCategories } from "../../Redux/Category/action";
+import { BaseUrl } from "../../Shared/BaseUrl";
 
 const CakeList = () => {
   const category = useSelector(
@@ -28,7 +29,7 @@ const CakeList = () => {
                 {/* img div */}
                 <div className="flex justify-center h-36 md:h-48">
                   <img
-                    src={`http://44.204.103.253:8000/${cat.image}`}
+                    src={`${BaseUrl}/${cat.image}`}
                     alt={cat.name}
                     className="h-full object-contain w-full"
                   />

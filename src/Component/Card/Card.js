@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { BaseUrl } from "../../Shared/BaseUrl";
 
 const Card = ({ product }) => {
   const isAuthenticated = localStorage.getItem("role");
@@ -10,7 +11,7 @@ const Card = ({ product }) => {
       <Link to={`/product?id=${product._id}`}>
         <div className="flex justify-center h-36 md:h-52 img">
           <img
-            src={`http://44.204.103.253:8000/${product.image}`}
+            src={`${BaseUrl}/${product.image}`}
             alt={product.name}
             className="h-full object-cover w-full"
           />

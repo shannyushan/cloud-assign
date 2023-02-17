@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Breadcrum from "../../Component/Breadcrum/Breadcrum";
 import Loading from "../../Component/Loading/Loading";
 import { fetchGetProducts } from "../../Redux/Product/action";
+import { BaseUrl } from "../../Shared/BaseUrl";
 
 const headings = [
   {
@@ -77,7 +78,7 @@ const ViewProduct = () => {
                         <div className="flex items-center gap-x-2">
                           <div className="w-14 h-14">
                             <img
-                              src={`http://44.204.103.253:8000/${data.image}`}
+                              src={`${BaseUrl}/${data.image}`}
                               alt={data.name}
                               className="w-full h-full object-contain"
                             />
