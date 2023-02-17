@@ -7,6 +7,7 @@ import ViewCategory from "./Container/Admin/ViewCategory";
 import ViewProduct from "./Container/Admin/ViewProduct";
 import Home from "./Container/Home/Home";
 import Login from "./Container/Login";
+import Registartion from "./Container/Login/Registartion";
 import Products from "./Container/Product";
 import ProductDetail from "./Container/ProductDetail";
 import AdminRoutes from "./Layout/AdminRoute";
@@ -29,9 +30,10 @@ const App = () => {
 
         {/* user route */}
         <Route path="/" element={<NormalRoute Component={Home} />}>
-          <Route path="/login" element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="category" element={<Products />} />
           <Route path="product" element={<ProductDetail />} />
+          <Route path="register" element={<Registartion />} />
         </Route>
       </Routes>
     </BrowserRouter>

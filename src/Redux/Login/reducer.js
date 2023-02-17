@@ -8,6 +8,7 @@ const initialState = {
   message: "",
   errMsg: "",
   otpVerify: "",
+  rsuccess: "",
 };
 
 export const Login = (state = initialState, action) => {
@@ -33,6 +34,14 @@ export const Login = (state = initialState, action) => {
         isloading: false,
         success: action.payload.success,
         user: action.payload.user,
+      };
+
+    case ActionTypes.REGISTER:
+      return {
+        ...state,
+        isloading: false,
+        rsuccess: true,
+        message: action.payload.message,
       };
     case ActionTypes.LOGOUT:
       return {

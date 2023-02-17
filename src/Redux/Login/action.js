@@ -69,3 +69,20 @@ export const userLogout = () => (dispatch) => {
     }
   });
 };
+
+export const registerUser = (body) => (dispatch) => {
+  dispatch(loginLoading());
+  return axios
+    .post(`${BaseUrl}/user/register`, body)
+    .then(({ data }) => {
+      if (data.success) {
+        dispatch({
+          type: ActionTypes.REGISTER,
+          payload: data,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log("errr while register", e);
+    });
+};

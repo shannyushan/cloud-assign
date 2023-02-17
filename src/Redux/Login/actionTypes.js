@@ -3,6 +3,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const FETCH_USER = "FETCH_USER";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const REGISTER = "REGISTER";
 export const GET_OTP = "GET_OTP";
 export const FAIL_GET_OTP = "FAIL_GET_OTP";
 export const VERIFY_OTP = "VERIFY_OTP";

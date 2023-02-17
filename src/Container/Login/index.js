@@ -117,6 +117,15 @@ const Login = () => {
               </Form>
             )}
           </Formik>
+          <div className="mt-5 w-3/5">
+            <Link to="/register">
+              <Button
+                type="button"
+                className="bg-green-500 py-2 tracking-wide hover:bg-green-400 font-serif text-white w-full"
+                value="Create new Account"
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
